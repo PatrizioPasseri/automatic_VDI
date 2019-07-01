@@ -26,7 +26,7 @@ def Create_user(Username,EmailAddress,GivenName,Surname):
     password = ''.join([secrets.choice(string.ascii_letters + string.digits +'%&$#()!@') for i in range(8)])
     print(password)
     response = workdocs.create_user(
-        OrganizationId='d-95672d33ae',
+        OrganizationId=OrganizationId,
         Username=Username,
         EmailAddress=EmailAddress,
         GivenName=GivenName,
