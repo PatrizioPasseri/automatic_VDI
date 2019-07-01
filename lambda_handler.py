@@ -8,7 +8,7 @@ workdocs = boto3.client('workdocs')
 def Registered_Users():
     Registered_Users={}
     response = workdocs.describe_users(
-    OrganizationId='d-95672d33ae'
+    OrganizationId='OrganizationId'
     )
     #pprint.pprint(response)
     Username = [X['Username'] for X in response['Users']]
