@@ -1,0 +1,46 @@
+<html lang="ja">
+<head>
+	<meta charset="UTF-8" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript">
+$(function() {
+    $("#btn").click(function(){	
+        var params = {
+		  "action": "List" //あとで分岐させる。
+    };
+    $.ajax({
+      url: 'https://9jrk5dcefh.execute-api.ap-northeast-1.amazonaws.com/test/list',
+      type: 'POST',
+      data: JSON.stringify(params),
+      dataType: "json",
+      success: function(json) {
+        var output = null
+        var stringData = JSON.stringify(json);
+      　var parseData = JSON.parse(stringData);
+      　var bodyjson = JSON.stringify(parseData.body)
+        var bodyjson = JSON.parse(bodyjson);
+        $("#output").append("<tr><th>UserName</th><th>Workspaces</th><th>DeadLine</th></tr>");
+        for(var i in bodyjson){
+          $("#output").append("<tr><td>" + bodyjson[i].UserName +"</td><td>" + bodyjson[i].Workspaces + "</td><td>" + bodyjson[i].Deadline + "</td></tr>");
+        
+        }
+        $("#output").append("</table>");
+      },
+      error: function() {
+        alert("error");
+      },
+      });	
+    });
+});
+
+</script>
+</head>
+	<body>
+    <button id="btn">アカウント一覧表示</button>
+		<div>
+			<p id="os"></p>
+
+      <table id="output" border="1"></table>
+		</div>
+	</body>
+</html>
